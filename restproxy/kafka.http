@@ -1,0 +1,46 @@
+# Créer un topic kafka
+#kafka-topics --create --topic bar --bootstrap-server broker:9092 --partitions 1 --replication-factor 1
+
+# Produire un message JSON dans le topic
+#curl -X POST -H "Content-Type: application/vnd.kafka.json.v2+json" \
+#--data '{"records":[{"value":{"name":"toto", "age":30}}]}' \
+
+POST http://localhost:8082/topics/bar
+Content-Type: application/vnd.kafka.json.v2+json
+
+{
+  "records":[
+    {"value":{"name":"toto", "age":30}}
+  ]
+}
+
+
+###
+# # Créer une nouvelle instance consumer
+#curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" \
+#--data '{"name": "my_consumer_instance", "format": "json", "auto.offset.reset": "earliest"}' \
+#http://localhost:8082/consumers/my_consumer_group
+POST http://localhost:8082/consumers/my_consumer_group
+Content-Type: application/vnd.kafka.v2+json
+
+{"name": "my_consumer_instance", "format": "json", "auto.offset.reset": "earliest"}
+
+###
+# Abonner le consommateur au topic
+#curl -X POST -H "Content-Type: application/vnd.kafka.v2+json" \
+#--data '{"topics":["bar"]}' \
+#http://localhost:8082/consumers/my_consumer_group/instances/my_consumer_instance/subscription
+
+POST http://localhost:8082/consumers/my_consumer_group/instances/my_consumer_instance/subscription
+Content-Type: application/vnd.kafka.v2+json
+
+{"topics":["bar"]}
+
+
+###
+# Consommer des messages
+#curl -X GET -H "Accept: application/vnd.kafka.json.v2+json" \
+#http://localhost:8082/consumers/my_consumer_group/instances/my_consumer_instance/records
+GET http://localhost:8082/consumers/my_consumer_group/instances/my_consumer_instance/records
+Accept: application/vnd.kafka.json.v2+json
+
