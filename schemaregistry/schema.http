@@ -1,0 +1,33 @@
+# curl -X POST -H "Content-Type: application/vnd.schemaregistry.v1+json"
+#--data '{"schema": "{\"type\":\"record\",\"name\":\"User\",\"fields\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"age\",\"type\":\"int\"},{\"name\":\"email\",\"type\":[\"null\",\"string\"],\"default\":null}]}"}'
+#http://localhost:8081/subjects/user-value/versions
+POST http://localhost:8081/subjects/user-value/versions
+Content-Type: application/vnd.schemaregistry.v1+json
+
+{
+  "schema": {
+    "type": "record",
+    "name": "User",
+    "fields": [
+      {
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "name": "age",
+        "type": "int"
+      },
+      {
+        "name": "email",
+        "type": [
+          "null",
+          "string"
+        ],
+        "default": null
+      }
+    ]
+  }
+}
+
+###
+
