@@ -1,0 +1,18 @@
+{
+  "name":"jdbc-source-connector",
+  "config":{
+    "connector.class":"io.confluent.connect.jdbc.JdbcSourceConnector",
+    "tasks.max":"1",
+    "connection.url":"jdbc:postgresql://postgres:5432/lab",
+    "connection.user":"myuser",
+    "connection.password":"mypassword",
+    "table.whitelist":"users",
+    "mode":"incrementing",
+    "incrementing.column.name":"id",
+    "poll.interval.ms":"10000",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter.schemas.enable": "false"
+  }
+}

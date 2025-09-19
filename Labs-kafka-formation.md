@@ -804,12 +804,12 @@ curl -X GET http://connect:8083/connectors/jdbc-source-connector/status
 
 #### 10. Déployer le connecteur MongoDB Sink
 ```bash
-curl -X POST -H "Content-Type: application/json" --data @mongo-sink-config.json http://connect:8083/connectors
+curl -X POST -H "Content-Type: application/json" --data @mongo-sink-config.json http://localhost:8083/connectors
 ```
 
 #### 11. Vérifier l'état du connecteur Mongo Sink
 ```bash
-curl -X GET http://connect:8083/connectors/mongodb-sink-connector/status
+curl -X GET http://localhost:8083/connectors/mongodb-sink-connector/status
 ```
 
 #### 12. Tester le pipeline avec des données
