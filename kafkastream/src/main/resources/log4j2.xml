@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+	<Properties>
+		<Property name="pattern">%d [%t - %X{iduser} %X{codeenv}] %-5p [%c{1}] : %m%n</Property>
+	</Properties>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${pattern}" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.ag2r.common" level="debug" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
+		<Logger name="org.springframework.web.cors" level="debug" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
+		<Logger name="org.meanbean.factories.util.BasicFactoryLookupStrategy" level="error" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
+		<Logger name="org.springframework.web.client.RestTemplate" level="debug" additivity="false">
+			<AppenderRef ref="console" />
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>

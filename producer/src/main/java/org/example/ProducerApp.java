@@ -19,7 +19,7 @@ public class ProducerApp {
         final int NUMBER_OF_RECORD = 1000000;
         final int MIN = 1;
         final int MAX = 500;
-        final String topicName = "vehicle-count";
+        final String topicName = "vehicle-count2";
 
         final Properties configs = new Properties();
         configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
@@ -33,8 +33,8 @@ public class ProducerApp {
         try (KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(configs)) {
             for (int i = 0; i < NUMBER_OF_RECORD; i++) {
                 String key = "sensor-" + i;
-//                int value = new Random().nextInt(MAX - MIN) + MIN;
-                int value = ++counter;
+                int value = new Random().nextInt(MAX - MIN) + MIN;
+//                int value = ++counter;
 
                 ProducerRecord<String, String> producerRecord = new ProducerRecord<>(topicName, key, "" +value);
                 System.out.println("Produced message: (" + key + ", " + value + ")");
